@@ -87,7 +87,7 @@ export default {
     },
     getSelectedPlaylistSongs() {
      return this.listOfSongs.filter(findSong => {
-       // Bug: This if-statement prevents your added songs to display unless you add a song first triggering addSelectedSongsToPlaylist().
+       // Bug: Your added songs will only display once you add a song in the input field, which will then trigger addSelectedSongsToPlaylist()
         if (this.selectedPlaylist === this.playlistName) {
           return findSong;
         }

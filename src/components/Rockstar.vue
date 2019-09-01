@@ -1,24 +1,23 @@
 <template>
-  <div class="container">
-    <div class="text-center">
-      <img alt="Rockstar logo" class="img-fluid rockstar-logo" src="../assets/rockstarlogo.png">
-      <h1 class="mt-3 font-weight-bold text-white">Search</h1>
-      <div class="offset-3">
-  `     <div class="search-engine">
-          <input 
-            class="col-8 col-md-8"
-            v-model="search"
-            placeholder="i.e. Bob Dylan" />
-        </div>
-        <div
-          v-if="search != ''"
-          class="mt-2"
-        >
-          <li
-            class="text-left" @click="chosenArtist(artist.name)" v-for="artist in filterAllArtists" :key="artist.id">
-            {{ artist.name }} 
-          </li>
-        </div>
+  <div class="hello container text-center">
+    <img alt="Rockstar logo" class="img-fluid rockstar-logo" src="../assets/rockstarlogo.png">
+    <h1 class="mt-3 font-weight-bold text-white">Search</h1>
+    <div class="offset-3">
+`     <div class="search-engine">
+        <input 
+          class="col-8 col-md-8"
+          v-model="search"
+          placeholder="i.e. Bob Dylan" />
+      </div>
+      <div
+        v-if="search != ''"
+        class="mt-2"
+      >
+        <li
+          class="commit text-left" @click="chosenArtist(artist.name)"
+          v-for="artist in filterAllArtists" :key="artist.id">
+          {{ artist.name }} 
+        </li>
       </div>
     </div>
   </div>
