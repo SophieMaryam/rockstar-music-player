@@ -1,11 +1,9 @@
 <template>
   <div class="flex mt-5 fullcontainer">
-    <div class="">
+    <div>
       <h3 class="font-weight-bold"> {{ getPlaylistName }}</h3>
       <h5 class="text-white font-weight-bold">Select a song to add it to your playlist!</h5>
-      <div class="mt-4 text-white">
-        <form>
-          <div class="mt-4 mb-3">
+      <div class="mt-4 mb-3 text-white">
             <label
               for="new-song"
               class="text-white mr-2">
@@ -17,8 +15,6 @@
               placeholder="i.e. Mr. Brightside"
               required
             >
-          </div>
-        </form>
       </div>
       <div 
         v-if="search != ''"
@@ -28,7 +24,7 @@
           <ul>
             <li
               class=""
-              @click="addSelectedSongsToPlaylist(song.name)"
+              @click="addSelectedSongsToPlaylist(song.name, song.id)"
               v-for="song in filterAllSongs"
               :key="song.id"
             >
@@ -66,7 +62,6 @@ export default {
     return {
       data: RockstarJson,
       allSongs: [],
-      songId: 0,
       search: "",
       playlistName: "",
       allPlaylists: this.$store.getters.allPlaylists,
@@ -102,17 +97,22 @@ export default {
     getAllSongs() {
       this.allSongs = this.data.songs;
     },
-    addSelectedSongsToPlaylist(songName) {
+    addSelectedSongsToPlaylist(songName, songId) {
       return this.allPlaylists.filter(value => {
         if (value.name === this.playlistName) {
           value.song.push({
-            songId: this.songId++,
+            songId: songId,
             name: songName
           });
           this.updateDataValues(value);
           this.resetInputField();
         }
       });
+    },
+    tryThis() {
+      if (value.name.length === 1) {
+        
+      }
     },
     updateDataValues(value) {
       this.selectedPlaylist = value.name;
