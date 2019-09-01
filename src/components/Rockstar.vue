@@ -1,5 +1,5 @@
 <template>
-  <div class="hello container text-center">
+  <div class="container text-center">
     <img alt="Rockstar logo" class="img-fluid rockstar-logo" src="../assets/rockstarlogo.png">
     <h1 class="mt-3 font-weight-bold text-white">Search</h1>
     <div class="offset-3">
