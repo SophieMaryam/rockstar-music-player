@@ -87,6 +87,7 @@ export default {
     },
     getSelectedPlaylistSongs() {
      return this.listOfSongs.filter(findSong => {
+       // Bug: This if-statement prevents your added songs to display unless you add a song first triggering addSelectedSongsToPlaylist().
         if (this.selectedPlaylist === this.playlistName) {
           return findSong;
         }
@@ -108,11 +109,6 @@ export default {
           this.resetInputField();
         }
       });
-    },
-    tryThis() {
-      if (value.name.length === 1) {
-        
-      }
     },
     updateDataValues(value) {
       this.selectedPlaylist = value.name;
