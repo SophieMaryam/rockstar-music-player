@@ -4,17 +4,17 @@
       <h3 class="font-weight-bold"> {{ getPlaylistName }}</h3>
       <h5 class="text-white font-weight-bold">Select a song to add it to your playlist!</h5>
       <div class="mt-4 mb-3 text-white">
-            <label
-              for="new-song"
-              class="text-white mr-2">
-                Add a Song:
-            </label>
-            <input
-              class="input-field"
-              v-model="search"
-              placeholder="i.e. Mr. Brightside"
-              required
-            >
+        <label
+          for="new-song"
+          class="text-white mr-2">
+            Add a Song:
+        </label>
+        <input
+          class="input-field"
+          v-model="search"
+          placeholder="i.e. Mr. Brightside"
+          required
+        >
       </div>
       <div 
         v-if="search != ''"
