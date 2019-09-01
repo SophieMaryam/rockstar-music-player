@@ -31,6 +31,7 @@ describe("Rockstar", () => {
 
 
   it("calls mutation to set the artist name", () => {
+    // cmp.find(".commit")
     expect(chosenArtist).toBeCalled();
     // expect(mutations.setChosenArtist).toHaveBeenCalled();
   });
