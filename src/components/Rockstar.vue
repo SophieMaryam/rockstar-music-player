@@ -15,7 +15,8 @@
       >
         <ul>
           <li
-            class="commit text-left" @click="chosenArtist(artist.name)"
+            @click="chosenArtist(artist.name)"
+            class="commit text-left" 
             v-for="artist in filterAllArtists" :key="artist.id">
             {{ artist.name }} 
           </li>
