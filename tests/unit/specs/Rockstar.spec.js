@@ -9,7 +9,11 @@ describe("Rockstar", () => {
   let mutations;
   let store;
   let cmp;
-  const chosenArtist = jest.fn();
+  let artist = jest.fn()
+  let allArtists = jest.fn()
+  const $router = {
+    push: jest.fn(),
+  }
 
   beforeEach(() => {
     mutations = {
@@ -19,8 +23,14 @@ describe("Rockstar", () => {
     cmp = shallowMount(Rockstar, {
       store,
       localVue,
-      methods: {
-        chosenArtist
+      data() {
+        return {
+          search: "Bob Dylan",
+          allArtists: [],
+        }
+      },
+      mocks: {
+        $router
       }
     });
   });
@@ -29,9 +39,11 @@ describe("Rockstar", () => {
     jest.clearAllMocks();
   });
 
-  it("calls mutation to set the artist name", () => {
-    cmp.find('.commit').trigger("click");
-    expect(chosenArtist).toHaveBeenCalled();
-    expect(mutations.setChosenArtist).toHaveBeenCalled();
+  it("executes chosenArtist method on 'li' click", () => {
+    let li = cmp.find("li")
+    li.trigger('click')
+    expect(mutations.setChosenArtist).toHaveBeenCalledWith({}, "Bob Dylan")
+    expect($router.push).toHaveBeenCalled()
+    expect(cmp.vm.search).toBe("")
   });
 });
