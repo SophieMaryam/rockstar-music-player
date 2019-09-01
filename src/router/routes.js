@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Rockstar from "../components/Rockstar";
-import Artist from "../components/Artist/Artist";
+import Artist from "../components/Artist";
 import Music from "../views/Music";
 
 Vue.use(Router);

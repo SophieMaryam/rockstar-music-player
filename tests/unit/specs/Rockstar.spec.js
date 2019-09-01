@@ -9,6 +9,7 @@ describe("Rockstar", () => {
   let mutations;
   let store;
   let cmp;
+  const chosenArtist = jest.fn();
 
   beforeEach(() => {
     mutations = {
@@ -18,9 +19,9 @@ describe("Rockstar", () => {
     cmp = shallowMount(Rockstar, {
       store,
       localVue,
-      // methods: {
-      //   chosenArtist
-      // }
+      methods: {
+        chosenArtist
+      }
     });
   });
 
@@ -30,11 +31,7 @@ describe("Rockstar", () => {
 
 
   it("calls mutation to set the artist name", () => {
-    const stub = jest.fn();
-    cmp.setMethods({ chosenArtist: stub });
-    const el = cmp.find(".commit");
-    console.log(el);
-    expect(stub).toBeCalled();
+    expect(chosenArtist).toBeCalled();
     // expect(mutations.setChosenArtist).toHaveBeenCalled();
   });
 });
