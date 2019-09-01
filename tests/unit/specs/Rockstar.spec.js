@@ -10,6 +10,7 @@ describe("Rockstar", () => {
   let store;
   let cmp;
   const chosenArtist = jest.fn();
+  const getAllArtists = jest.fn();
 
   beforeEach(() => {
     mutations = {
@@ -20,7 +21,8 @@ describe("Rockstar", () => {
       store,
       localVue,
       methods: {
-        chosenArtist
+        chosenArtist,
+        getAllArtists
       }
     });
   });
@@ -31,8 +33,7 @@ describe("Rockstar", () => {
 
 
   it("calls mutation to set the artist name", () => {
-    // cmp.find(".commit")
-    expect(chosenArtist).toBeCalled();
+    expect(getAllArtists).toHaveBeenCalled();
     // expect(mutations.setChosenArtist).toHaveBeenCalled();
   });
 });

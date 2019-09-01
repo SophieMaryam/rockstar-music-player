@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.5.5",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.28",
     "core-js": "^2.6.5",
@@ -44,7 +45,11 @@
   "jest": {
     "testURL": "http://localhost/",
     "verbose": true,
-    "moduleDirectories": ["node_modules", "src", "tests"],
+    "moduleDirectories": [
+      "node_modules",
+      "src",
+      "tests"
+    ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
     },
