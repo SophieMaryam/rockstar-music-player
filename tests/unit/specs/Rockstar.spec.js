@@ -33,7 +33,8 @@ describe("Rockstar", () => {
 
 
   it("calls mutation to set the artist name", () => {
-    expect(getAllArtists).toHaveBeenCalled();
+    cmp.find
+    expect(chosenArtist).toHaveBeenCalled();
     // expect(mutations.setChosenArtist).toHaveBeenCalled();
   });
 });
