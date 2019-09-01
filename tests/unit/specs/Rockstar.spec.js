@@ -29,12 +29,9 @@ describe("Rockstar", () => {
     jest.clearAllMocks();
   });
 
-
   it("calls mutation to set the artist name", () => {
-    const el = cmp.find("");
-    console.log(el)
-    // cmp.find('.commit').trigger("click");
-    // expect(chosenArtist).toHaveBeenCalled();
+    cmp.find('.commit').trigger("click");
+    expect(chosenArtist).toHaveBeenCalled();
     expect(mutations.setChosenArtist).toHaveBeenCalled();
   });
 });
