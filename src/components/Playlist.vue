@@ -61,6 +61,7 @@ export default {
     }
   },
   methods: {
+    // Bug: Playlists with the same name can be added. This is missing here. 
     addNewPlaylist() {
       this.allPlaylists.push({
         id: this.playlistId++,
