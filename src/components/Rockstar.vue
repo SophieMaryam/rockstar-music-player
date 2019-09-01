@@ -13,11 +13,13 @@
         v-if="search != ''"
         class="mt-2"
       >
-        <li
-          class="commit text-left" @click="chosenArtist(artist.name)"
-          v-for="artist in filterAllArtists" :key="artist.id">
-          {{ artist.name }} 
-        </li>
+        <ul>
+          <li
+            class="commit text-left" @click="chosenArtist(artist.name)"
+            v-for="artist in filterAllArtists" :key="artist.id">
+            {{ artist.name }} 
+          </li>
+        </ul>
       </div>
     </div>
   </div>
