@@ -70,7 +70,6 @@ export default {
       search: "",
       playlistName: "",
       allPlaylists: this.$store.getters.allPlaylists,
-      songs: false,
       listOfSongs: [],
       nameOfPlaylist: ""
     };
