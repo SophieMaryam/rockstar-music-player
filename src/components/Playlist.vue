@@ -3,7 +3,7 @@
     <div class="ml-3">
       <h3 class="font-weight-bold">Playlists:</h3>
       <div class="mt-4 text-white">
-        <form v-on:submit.prevent="addNewPlaylist()">
+        <form @submit.prevent="addNewPlaylist()">
           <div class="mt-4 mb-3">
             <label
               for="new-playlist"
@@ -50,25 +50,23 @@ export default {
     return {
       allPlaylists: [],
       playlistId: 0,
-      playlistName: ""
-    }
-  },
-  computed: {
-    filterPlaylists() {
-      return this.allPlaylists.filter(playlist => {
-        return playlist.name.toLowerCase();
-      })
+      playlistName: "",
+      allPlaylistNames: []
     }
   },
   methods: {
-    // Bug: Playlists with the same name can be added. This is missing here. 
     addNewPlaylist() {
-      this.allPlaylists.push({
-        id: this.playlistId++,
-        name: this.playlistName,
-        song: []
-      });
-      this.resetInputField();
+      if(!(this.allPlaylistNames.includes(this.playlistName)) || this.allPlaylistNames == "") {
+        this.allPlaylists.push({
+          id: this.playlistId++,
+          name: this.playlistName,
+          songs: []
+        });
+        this.filterPlaylists();
+        this.resetInputField();
+      } else {
+        alert("You've already used that name. Please try another!")
+      }
     },
     openPlaylistSongs(playlistName) {
       this.$store.commit("setPlaylistName", playlistName);
@@ -76,6 +74,9 @@ export default {
     },
     resetInputField() {
       this.playlistName = "";
+    },
+    filterPlaylists() {
+      this.allPlaylists.filter(playlist => this.allPlaylistNames.push(playlist.name));
     }
   }
 }
