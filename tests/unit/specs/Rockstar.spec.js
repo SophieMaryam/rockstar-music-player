@@ -26,7 +26,7 @@ describe("Rockstar", () => {
       data() {
         return {
           search: "Bob Dylan",
-          allArtists: [],
+          allArtists: []
         }
       },
       mocks: {
@@ -40,10 +40,10 @@ describe("Rockstar", () => {
   });
 
   it("executes chosenArtist method on 'li' click", () => {
-    let li = cmp.find("li")
-    li.trigger('click')
-    expect(mutations.setChosenArtist).toHaveBeenCalledWith({}, "Bob Dylan")
-    expect($router.push).toHaveBeenCalled()
-    expect(cmp.vm.search).toBe("")
+    let li = cmp.find("li");
+    li.trigger("click");
+    expect(mutations.setChosenArtist).toHaveBeenCalledWith({}, "Bob Dylan");
+    expect($router.push).toHaveBeenCalled();
+    expect(cmp.vm.search).toBe("");
   });
 });
