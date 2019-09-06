@@ -5,7 +5,7 @@
       <div class="col-12 col-lg-5 col-xl-3">
         <Playlist />
       </div>
-      <div class="col-6">
+      <div class="col-7">
         <Songs v-if="openSongComponent" />
       </div>
     </div>
