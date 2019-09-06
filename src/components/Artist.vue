@@ -33,11 +33,7 @@ export default {
   },
   computed: {
     getAllArtistSongs() {
-      return this.allSongs.filter(song => {
-        if (song.artist === this.artistName) {
-          return song;
-        };
-      })
+      return this.allSongs.filter(song => song.artist === this.artistName)
     }
   },
   methods: {
