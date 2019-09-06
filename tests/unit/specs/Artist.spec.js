@@ -25,10 +25,6 @@ describe("Artist", () => {
     });
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   it("returns correct artist from store", () => {
     expect(cmp.vm.artistName).toBe("AC/DC");
   });
