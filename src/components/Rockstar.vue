@@ -30,13 +30,12 @@
 import RockstarJson from "../common/rockstars.json";
 
 export default {
-  name: 'Rockstar',
+  name: "Rockstar",
   data() {
     return {
       data: RockstarJson,
       search: "",
-      allArtists: [],
-      list: []
+      allArtists: []
     }
   },
   mounted() {
@@ -44,9 +43,7 @@ export default {
   },
   computed: {
     filterAllArtists() {
-      return this.allArtists.filter(artist => {
-        return artist.name.toLowerCase().includes(this.search.toLowerCase());
-      })
+      return this.allArtists.filter(artist => artist.name.toLowerCase().includes(this.search.toLowerCase()));
     }
   },
   methods: {
@@ -59,7 +56,7 @@ export default {
       this.resetInputField();
     },
     resetInputField() {
-     this.search = "";
+      this.search = "";
     }
   }
 }
