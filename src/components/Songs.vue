@@ -1,7 +1,7 @@
 <template>
-  <div class="flex mt-5 fullcontainer">
+  <div class="flex mt-5">
     <div>
-      <h3 class="font-weight-bold"> {{ getPlaylistName }}</h3>
+      <h3 class="playlist-name font-weight-bold"> {{ getPlaylistName }}</h3>
       <h5 class="text-white font-weight-bold">Select a song to add it to your playlist!</h5>
       <div class="mt-4 mb-3 text-white">
         <label
@@ -24,7 +24,7 @@
           <ul>
             <li
               class=""
-              @click="addSelectedSongsToPlaylist(song.name, song.id)"
+              @click="addSelectedSongsToPlaylist(song)"
               v-for="song in filterAllSongs"
               :key="song.id"
             >
@@ -42,9 +42,9 @@
           v-for="(addedSong, index) in getSelectedPlaylistSongs"
           :key="addedSong.id"
         >
-          {{ addedSong.name }}
+          {{ addedSong }}
           <button 
-            class="btn remove-button ml-3 text-uppercase rounded-0 font-weight-bold right" @click="listOfSongs.splice(index, 1)">
+            class="btn remove-button ml-3 text-uppercase rounded-0 font-weight-bold right" @click="getSelectedPlaylistSongs.splice(index, 1)">
               Remove
           </button>
         </li>
@@ -64,9 +64,7 @@ export default {
       allSongs: [],
       search: "",
       playlistName: "",
-      allPlaylists: this.$store.getters.allPlaylists,
-      listOfSongs: [],
-      nameOfPlaylist: ""
+      allPlaylists: this.$store.getters.allPlaylists
     };
   },
   mounted() {
@@ -82,37 +80,23 @@ export default {
       this.playlistName = this.$store.getters.playlistName;
       return this.playlistName;
     },
-    getAllPlaylists() {
-      return this.$store.getters.allPlaylists;
-    },
     getSelectedPlaylistSongs() {
-     return this.listOfSongs.filter(findSong => {
-       // Bug: Your added songs will only display once you add a song in the input field, which will then trigger addSelectedSongsToPlaylist()
-        if (this.selectedPlaylist === this.playlistName) {
-          return findSong;
-        }
-      });
+      const selectedPlaylist = this.allPlaylists.find(playList => this.playlistName === playList.name);
+      const selectedPlayListSongsNames = selectedPlaylist.songs.map(song => song.name);
+      return selectedPlayListSongsNames;
     }
   },
   methods: {
     getAllSongs() {
       this.allSongs = this.data.songs;
     },
-    addSelectedSongsToPlaylist(songName, songId) {
-      return this.allPlaylists.filter(value => {
-        if (value.name === this.playlistName) {
-          value.song.push({
-            songId: songId,
-            name: songName
-          });
-          this.updateDataValues(value);
+    addSelectedSongsToPlaylist(song) {
+      return this.allPlaylists.filter(playList => {
+        if (playList.name === this.playlistName) {
+          playList.songs.push(song);
           this.resetInputField();
         }
       });
-    },
-    updateDataValues(value) {
-      this.selectedPlaylist = value.name;
-      this.listOfSongs = value.song;
     },
     resetInputField() {
       this.search = "";
