@@ -10,14 +10,14 @@
             Add a Song:
         </label>
         <input
+          v-model="input"
           class="input-field"
-          v-model="search"
           placeholder="i.e. Mr. Brightside"
           required
         >
       </div>
       <div 
-        v-if="search != ''"
+        v-if="input != ''"
         class="mt-2 text-white"
       >
         <div>
@@ -62,19 +62,29 @@ export default {
     return {
       data: RockstarJson,
       allSongs: [],
-      search: "",
+      input: this.$store.getters.input,
       playlistName: "",
-      allPlaylists: this.$store.getters.allPlaylists
+      allPlaylists: this.$store.getters.allPlaylists,
+      selectedPlayListSongsNames: []
     };
   },
   mounted() {
     this.getAllSongs();
+    this.input = this.$store.getters.input
   },
   computed: {
     filterAllSongs() {
       return this.allSongs.filter(song => {
-        return song.name.toLowerCase().includes(this.search.toLowerCase());
+        return song.name.toLowerCase().includes(this.input.toLowerCase());
       });
+    },
+    setInput: {
+      get() {
+        return this.$store.state.input
+      },
+      set() {
+        this.$store.commit("setInputValue")
+      }
     },
     getPlaylistName() {
       this.playlistName = this.$store.getters.playlistName;
@@ -82,8 +92,8 @@ export default {
     },
     getSelectedPlaylistSongs() {
       const selectedPlaylist = this.allPlaylists.find(playList => this.playlistName === playList.name);
-      const selectedPlayListSongsNames = selectedPlaylist.songs.map(song => song.name);
-      return selectedPlayListSongsNames;
+      this.selectedPlayListSongsNames = selectedPlaylist.songs.map(song => song.name);
+      return this.selectedPlayListSongsNames;
     }
   },
   methods: {
@@ -93,13 +103,17 @@ export default {
     addSelectedSongsToPlaylist(song) {
       return this.allPlaylists.filter(playList => {
         if (playList.name === this.playlistName) {
-          playList.songs.push(song);
-          this.resetInputField();
+          playList.songs.push(song); 
         }
+        this.resetInputField();
       });
     },
+    removeSong(index) {
+      this.selectedPlayListSongsNames.splice(index, 1)
+      console.log(this.selectedPlayListSongsNames)
+    },
     resetInputField() {
-      this.search = "";
+      this.input = "";
     }
   }
 }
