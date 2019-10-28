@@ -7,7 +7,8 @@ export const store = new Vuex.Store({
   state: {
     artist: "",
     playlistName: "",
-    allPlaylists: []
+    allPlaylists: [],
+    input: ""
   },
   mutations: {
     setChosenArtist(state, artist) {
@@ -18,6 +19,9 @@ export const store = new Vuex.Store({
     },
     setPlaylist(state, allPlaylists) {
       state.allPlaylists = allPlaylists;
+    },
+    setInputValue(state) {
+      state.input = "";
     }
   },
   getters: {
@@ -29,6 +33,9 @@ export const store = new Vuex.Store({
     },
     allPlaylists: state => {
       return state.allPlaylists;
+    },
+    input: state => {
+      return state.input;
     }
   }
 })
