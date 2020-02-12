@@ -1,4 +1,4 @@
-# rockstar_app
+# music_player_app
 
 ## Project setup
 ```
