@@ -3,7 +3,7 @@
     <div class="ml-3">
       <h3 class="font-weight-bold">Playlists:</h3>
       <div class="mt-4 text-black">
-        <form @submit.prevent="addNewPlaylist()">
+        <form @submit.prevent="addNewPlaylist(playlistName)">
           <div class="mt-4 mb-3">
             <label
               for="new-playlist"
@@ -19,7 +19,7 @@
           </div>
           <button 
             type="submit"
-            class="btn text-uppercase rounded-0 font-weight-bold my-4 button">
+            class="btn text-center text-uppercase rounded-0 font-weight-bold my-4">
               Add Playlist
           </button>
         </form>
@@ -51,7 +51,7 @@ export default {
       playlistId: 0,
       playlistName: "",
       playlists: [],
-      localStoragePlaylists: JSON.parse(localStorage.getItem('products')) || []
+      filteredPlaylist: []
     }
   },
   mounted() {
@@ -61,25 +61,30 @@ export default {
     getAllPlaylists() {
       this.playlists = JSON.parse(localStorage.getItem("playlists")) || [];
     },
-    addNewPlaylist() {
-      let filteredPlaylist = this.localStoragePlaylists.find(playlist => { 
-        playlist.name === this.playlistName 
-      });
-      if(!(filteredPlaylist) || filteredPlaylist == "") {
-        this.localStoragePlaylists.push({
+    addNewPlaylist(playlistName) {
+      this.filterPlaylists(playlistName)
+      if(!this.filteredPlaylist) {
+        this.playlists.push({
           id: this.playlistId++,
           name: this.playlistName,
           songs: []
         });
-        localStorage.setItem("playlists", JSON.stringify(this.localStoragePlaylists));
-        this.getAllPlaylists();
+        localStorage.setItem("playlists", JSON.stringify(this.playlists));
         this.resetInputField();
       } else {
         alert("You've already used that name. Please try another!")
       }
     },
+    filterPlaylists(playlistName) {
+      this.filteredPlaylist = this.playlists.find(playlist => { 
+        return playlist.name === playlistName
+      });
+    },
     openPlaylist(playlistName) {
-      this.$store.commit("setPlaylistName", playlistName);
+      this.filterPlaylists(playlistName);
+      if(this.filteredPlaylist) {
+        this.$store.commit("setPlaylistName", playlistName);
+      }
     },
     resetInputField() {
       this.playlistName = "";
@@ -89,16 +94,9 @@ export default {
 </script>
 
 <style scoped>
-  .btn {
-    color: black;
-    background-color: #FFE000;
-    width: 150px;
-    height: 50px;
-  }
-
-  ol li {
-    cursor: pointer;
-  }
+ol li {
+  cursor: pointer;
+}
 </style>
 
 
