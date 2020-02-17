@@ -2,12 +2,12 @@
   <div class="mt-5">
     <div class="ml-3">
       <h3 class="font-weight-bold">Playlists:</h3>
-      <div class="mt-4 text-white">
+      <div class="mt-4 text-black">
         <form @submit.prevent="addNewPlaylist()">
           <div class="mt-4 mb-3">
             <label
               for="new-playlist"
-              class="text-white mr-2">
+              class="text-black mr-2">
                 New Playlist:
             </label>
             <input
@@ -25,16 +25,16 @@
         </form>
       </div>
     </div>
-    <div class="text-white ml-3">
-      <div v-if="this.allPlaylists == ''">
+    <div class="text-black ml-3">
+      <div v-if="playlists == ''">
         <p>No playlists yet!</p>
       </div>
       <div v-else>
-        <h3 class="text-white">Select playlist to open:</h3>
+        <h3 class="text-black">Select playlist to open:</h3>
         <ol>
           <li
-            @click="openPlaylistSongs(playlist.name)"
-            v-for="playlist in allPlaylists"
+            @click="openPlaylist(playlist.name)"
+            v-for="playlist in playlists"
             :key="playlist.id"
           > {{ playlist.name }} </li>
         </ol>
@@ -48,35 +48,41 @@ export default {
   name: "Playlist",
   data() {
     return {
-      allPlaylists: [],
       playlistId: 0,
       playlistName: "",
-      allPlaylistNames: []
+      playlists: [],
+      localStoragePlaylists: JSON.parse(localStorage.getItem('products')) || []
     }
   },
+  mounted() {
+    this.getAllPlaylists;
+  },
   methods: {
+    getAllPlaylists() {
+      this.playlists = JSON.parse(localStorage.getItem("playlists")) || [];
+    },
     addNewPlaylist() {
-      if(!(this.allPlaylistNames.includes(this.playlistName)) || this.allPlaylistNames == "") {
-        this.allPlaylists.push({
+      let filteredPlaylist = this.localStoragePlaylists.find(playlist => { 
+        playlist.name === this.playlistName 
+      });
+      if(!(filteredPlaylist) || filteredPlaylist == "") {
+        this.localStoragePlaylists.push({
           id: this.playlistId++,
           name: this.playlistName,
           songs: []
         });
-        this.filterPlaylists();
+        localStorage.setItem("playlists", JSON.stringify(this.localStoragePlaylists));
+        this.getAllPlaylists();
         this.resetInputField();
       } else {
         alert("You've already used that name. Please try another!")
       }
     },
-    openPlaylistSongs(playlistName) {
+    openPlaylist(playlistName) {
       this.$store.commit("setPlaylistName", playlistName);
-      this.$store.commit("setPlaylist", this.allPlaylists);
     },
     resetInputField() {
       this.playlistName = "";
-    },
-    filterPlaylists() {
-      this.allPlaylists.filter(playlist => this.allPlaylistNames.push(playlist.name));
     }
   }
 }
