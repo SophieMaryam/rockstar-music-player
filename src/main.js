@@ -7,10 +7,17 @@ import { store } from "./store/store";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "./assets/App.css";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 
 Vue.use(Vuex)
 Vue.use(BootstrapVue);
+
+library.add(faSearch);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+
 Vue.config.productionTip = false;
 
 new Vue({
