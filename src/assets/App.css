@@ -36,9 +36,11 @@ input {
   height: 50px;
 }
 
-.text-color-white {
-  color: white;
-}
 .text-color-black {
   color: black;
+}
+
+.text-color-black:hover {
+  color: white;
+  text-decoration: none;
 }
