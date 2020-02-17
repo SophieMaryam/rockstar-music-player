@@ -18,7 +18,6 @@ ul {
   padding-left: 0;
 }
 
-ol li,
 ul li {
   cursor: pointer;
   list-style-type: none;
