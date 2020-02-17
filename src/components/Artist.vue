@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h1 class="text-center text-uppercase font-weight-bold mt-5 text-white"> {{ artistName }} </h1>
+    <h1 class="text-center text-uppercase font-weight-bold mt-5 text-white">
+      {{ artistName }}
+    </h1>
     <div class="col-6 all-songs">
-      <h3 class="font-weight-bold"> Songs: </h3>
+      <h3 class="font-weight-bold">Songs:</h3>
       <table>
-        <tr
-          class="text-white"
-          v-for="song in getAllArtistSongs"
-          :key="song.id"
-        > 
-          {{ song.name }}
+        <tr class="text-white" v-for="song in getAllArtistSongs" :key="song.id">
+          {{
+            song.name
+          }}
         </tr>
       </table>
     </div>
@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     getAllArtistSongs() {
-      return this.allSongs.filter(song => song.artist === this.artistName)
+      return this.allSongs.filter(song => song.artist === this.artistName);
     }
   },
   methods: {
@@ -41,12 +41,11 @@ export default {
       this.allSongs = this.data.songs;
     }
   }
-}
+};
 </script>
 
 <style scoped>
-  .all-songs {
-    margin-top: 100px;
-  }
+.all-songs {
+  margin-top: 100px;
+}
 </style>
-
