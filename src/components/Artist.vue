@@ -6,7 +6,7 @@
     <div class="col-6 all-songs">
       <h3 class="font-weight-bold">Songs:</h3>
       <table>
-        <tr class="text-white" v-for="song in getAllArtistSongs" :key="song.id">
+        <tr class="text-black" v-for="song in getAllArtistSongs" :key="song.id">
           {{
             song.name
           }}
