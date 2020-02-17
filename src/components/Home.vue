@@ -1,5 +1,5 @@
 <template>
-  <div class="background-image">
+  <div class="background">
     <div class="text-center center-screen">
       <h1 class="mt-3 font-weight-bold text-white text-uppercase">Find your favourite artist!</h1>
       <div class="col-6">
@@ -61,10 +61,8 @@ export default {
 </script>
 
 <style scoped>
-.background-image {
-  background-image: url("../assets/music-record1.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
+.background {
+  background-color: black;
   height: 100vh;
 }
 .search-input-field,
