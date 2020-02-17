@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Rockstar from "../components/Rockstar";
+import Home from "../components/Home";
 import Artist from "../components/Artist";
 import Music from "../views/Music";
 
@@ -9,8 +9,8 @@ Vue.use(Router);
 export const routes = [
   {
     path: "/",
-    name: "Rockstar",
-    component: Rockstar
+    name: "Home",
+    component: Home
   },
   {
     path: "/artist",
