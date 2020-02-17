@@ -1,15 +1,14 @@
 body {
-  background-color: black;
-  font-family: Arial Narrow, sans-serif
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h3 {
-  color: #FFE000
+  color: black;
 }
 
-.button {
-  color: black;
-  background-color: #FFE000;
+.btn {
+  color: white;
+  background: black;
   width: 150px;
   height: 50px;
 }
@@ -21,11 +20,12 @@ ul {
 
 ul li {
   list-style-type: none;
-  color: #FFFFFF;
+  color: black;
 }
 
 li:hover {
-  color: #FFE000;
+  color: black;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -33,4 +33,11 @@ input {
   border: none;
   background-color: rgb(212, 209, 209);
   height: 50px;
+}
+
+.text-color-white {
+  color: white;
+}
+.text-color-black {
+  color: black;
 }
