@@ -1,7 +1,7 @@
 <template>
   <div class="background-image">
     <div class="text-center center-screen">
-      <h1 class="mt-3 font-weight-bold text-white text-uppercase">FIND YOUR FAVOURITE ARTISTS</h1>
+      <h1 class="mt-3 font-weight-bold text-white text-uppercase">Find your favourite artist!</h1>
       <div class="col-6">
         <div class="search-bar d-flex">
           <font-awesome-icon icon="search" class="color" />
