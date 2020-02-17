@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-lg black-background text-white">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light background-color">
     <div>
-      <router-link class="navbar-brand navbar-text text-uppercase" to="/">Rockstar Music</router-link >
+      <router-link class="navbar-brand text-color-white text-uppercase" to="/">Music App</router-link >
     </div>
     <button class="navbar-toggler custom-toggler"
       type="button" 
@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarToggle">
       <ul class="navbar-nav ml-auto smooth-scroll">
         <li class="ml-3 nav-link">
-            <router-link class="navbar-text" to="/playlists">Playlists</router-link>
+            <router-link class="text-color" to="/playlists">Playlists</router-link>
         </li>
       </ul>
     </div>
@@ -29,17 +29,7 @@
 </script>
 
 <style scoped>
-  .navbar-text {
-    color: #FFE000;
-  }
 
-  .color {
-    color: #FFE000;
-  }
-
-  .custom-toggler.navbar-toggler {
-    border-color: #FFFFFF;
-}
 </style>
 
 
