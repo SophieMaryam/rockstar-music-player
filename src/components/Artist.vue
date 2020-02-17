@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import RockstarJson from "../common/rockstars.json";
+import MusicJSON from "../common/musicList.json";
 
 export default {
   name: "Artist",
   data() {
     return {
-      data: RockstarJson,
+      data: MusicJSON,
       artistName: this.$store.getters.artist,
       allSongs: []
     };
