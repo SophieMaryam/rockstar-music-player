@@ -82,7 +82,8 @@ export default {
         if(this.filteredPlaylist) {
           this.$store.commit("setPlaylistName", playlistName);
         }
-      }),
+      })
+    },
     resetInputField() {
       this.playlistName = "";
     }
