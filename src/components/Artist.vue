@@ -23,9 +23,8 @@ export default {
   name: "Artist",
   data() {
     return {
-      data: MusicJSON,
+      allSongs: MusicJSON.songs,
       artistName: this.$store.getters.artist,
-      allSongs: []
     };
   },
   mounted() {
@@ -33,14 +32,9 @@ export default {
   },
   computed: {
     getAllArtistSongs() {
-      return this.allSongs.filter(song => song.artist === this.artistName);
-    }
+      return this.allSongs.filter((song) => song.artist === this.artistName);
+    },
   },
-  methods: {
-    getAllSongs() {
-      this.allSongs = this.data.songs;
-    }
-  }
 };
 </script>
 
