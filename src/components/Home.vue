@@ -79,6 +79,10 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .color {
   color: white;
