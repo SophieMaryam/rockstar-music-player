@@ -55,34 +55,37 @@ export default {
       filteredPlaylist: []
     }
   },
-  mounted() {
+  created() {
     this.getAllPlaylists;
   },
   methods: {
     getAllPlaylists() {
       this.playlists = JSON.parse(localStorage.getItem("playlists")) || [];
     },
-    addNewPlaylist(playlistName) {
-      this.playlists.find(playlist => {
-        if(playlist.name === playlistName) {
-           this.playlists.push({
-            id: this.playlistId++,
-            name: this.playlistName,
-            songs: []
-           });
-           localStorage.setItem("playlists", JSON.stringify(this.playlists));
-           this.resetInputField();
-        } else {
-           alert("You've already used that name. Please try another!")
+    addNewPlaylist(playlistName) { 
+      this.filterPlaylists(playlistName)
+      if(!this.filteredPlaylist) {
+        this.playlists.push({
+          id: this.playlistId++,
+          name: this.playlistName,
+          songs: []
+        });
+        localStorage.setItem("playlists", JSON.stringify(this.playlists));
+        this.resetInputField();
+      } else {
+        alert("You've already used that name. Please try another!")
       }
-      })
     },
     openPlaylist(playlistName) {
-      this.playlists.find(playlist => {
-        if(this.filteredPlaylist) {
-          this.$store.commit("setPlaylistName", playlistName);
-        }
-      })
+      this.filterPlaylists(playlistName);
+      if(this.filteredPlaylist) {
+        this.$store.commit("setPlaylistName", playlistName);
+      }
+    },
+    filterPlaylists(playlistName) {
+      this.filteredPlaylist = this.playlists.forEach(playlist => { 
+        return playlist.name === playlistName
+      });
     },
     resetInputField() {
       this.playlistName = "";
