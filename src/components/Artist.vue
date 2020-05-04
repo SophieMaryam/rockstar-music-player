@@ -28,7 +28,7 @@ export default {
     };
   },
   mounted() {
-    this.getAllSongs();
+    this.allSongs;
   },
   computed: {
     getAllArtistSongs() {
